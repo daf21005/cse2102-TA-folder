@@ -1,6 +1,11 @@
+package p;
+
 public class PizzaFactory {
 
-    public Pizza pizzaOrder(PizzaType type) {
+    public Pizza createPizza(PizzaType type) {
+        if (type == null) {
+            throw new IllegalArgumentException("pizza type must not be null");
+        }
         switch (type) {
             case CHEESE:
                 return new CheesePizza();
@@ -13,9 +18,7 @@ public class PizzaFactory {
             case VEGAN:
                 return new VeganPizza();
             default:
-                return null;
+                throw new IllegalArgumentException("no pizza available for " + type);
         }
-        
     }
-
 }
